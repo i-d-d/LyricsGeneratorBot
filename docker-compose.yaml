@@ -1,0 +1,51 @@
+version: "2.1"
+
+services:
+
+  rabbitmq:
+
+    image: rabbitmq:3-management-alpine
+    hostname: rabbitmq-container
+    ports:
+        - '5672:5672'
+        - '15672:15672'
+    environment:
+        - RABBITMQ_DEFAULT_USER=myuser
+        - RABBITMQ_DEFAULT_PASS=mypassword
+    volumes:
+      - ./rabbitmq/advanced.config:/etc/rabbitmq/advanced.config
+    networks:
+      - rabbitmq_network
+
+  tgbot:
+    build: bot
+    depends_on:
+        - rabbitmq
+    links:
+        - rabbitmq
+    environment:
+        LOGIN_USER: 'myuser'
+        LOGIN_PASS: 'mypassword'
+        RABBIT_HOST: 'rabbitmq-container'
+        RABBIT_PORT: '5672'
+    networks:
+      - rabbitmq_network
+
+  neural:
+    build: network-responder
+    depends_on:
+        - rabbitmq
+    links:
+        - rabbitmq
+    environment:
+      LOGIN_USER: 'myuser'
+      LOGIN_PASS: 'mypassword'
+      RABBIT_HOST: 'rabbitmq-container'
+      RABBIT_PORT: '5672'
+    networks:
+      - rabbitmq_network
+
+
+networks:
+  rabbitmq_network:
+      driver: bridge

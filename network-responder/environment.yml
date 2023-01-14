@@ -1,0 +1,11 @@
+name: neural-network-env
+
+channels:
+  - huggingface
+
+dependencies:
+  - python=3.10.6
+  - numpy=1.23.3
+  - transformers=4.25.1
+  - pytorch=1.12.1
+  - torchvision=0.13.1
