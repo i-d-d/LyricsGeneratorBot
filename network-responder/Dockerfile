@@ -1,5 +1,5 @@
 # This container will contain the neural network itself with its consumer and responder module (one direct message to
-# received chat ID
+# received chat ID)
 FROM continuumio/miniconda3
 
 # Setting working directory
