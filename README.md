@@ -59,9 +59,9 @@ $ docker compose up -d tgbot
  - Сеимов М.С. (``docker`` и ``docker compose``, выбор и обучение нейросети)
  - Злобина В.В. (логика бота, настройка RabbitMQ, сбор датасета)
 
- <h4 align=center>
+ <h5 align=center>
     <br>
     <em>Выполнено в рамках курсового проекта по ООП
     <br>
     МАИ, 2023</em>
-</h4>
+</h5>
