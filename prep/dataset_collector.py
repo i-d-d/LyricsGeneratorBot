@@ -10,7 +10,7 @@ class Artist:
     def __init__(self, name):
         self.url = BASE_URL + name + '-lyrics'
 
-    def songs(self, number=10):
+    def songs(self, number):
         r = req.Request(
             url=self.url,
             headers={'User-Agent': 'Mozilla/5.0'}
@@ -54,7 +54,7 @@ file = open(FILE_PATH, 'a')
 
 for name in artists:
     webscrapper = Artist(name)
-    song_urls = webscrapper.songs(10)
+    song_urls = webscrapper.songs(100)
     webscrapper.write(song_urls, file)
 
 file.close()
